@@ -1,4 +1,5 @@
 import { Instagram, Youtube, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export const Footer = () => {
@@ -32,19 +33,19 @@ export const Footer = () => {
 
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <a 
-              href="/politica-de-datos" 
+            <Link 
+              to="/politica-de-datos" 
               className="text-muted-foreground hover:text-neon-cyan transition-colors duration-200"
             >
               {t('footer.data-policy')}
-            </a>
+            </Link>
             <span className="text-muted-foreground">|</span>
-            <a 
-              href="/terminos-y-condiciones" 
+            <Link 
+              to="/terminos-y-condiciones" 
               className="text-muted-foreground hover:text-neon-cyan transition-colors duration-200"
             >
               {t('footer.terms')}
-            </a>
+            </Link>
           </div>
 
           {/* Disclaimer */}

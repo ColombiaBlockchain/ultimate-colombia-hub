@@ -1,6 +1,7 @@
-import { useLanguage, LanguageProvider } from '@/contexts/LanguageContext';
+import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-const PoliticaDatosContent = () => {
+const PoliticaDatos = () => {
   const { t } = useLanguage();
 
   return (
@@ -60,12 +61,12 @@ const PoliticaDatosContent = () => {
           </div>
 
           <div className="mt-8 text-center">
-            <a 
-              href="/" 
+            <Link 
+              to="/" 
               className="inline-flex items-center text-neon-cyan hover:text-neon-green transition-colors duration-200"
             >
               ← Volver al inicio
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -73,12 +74,5 @@ const PoliticaDatosContent = () => {
   );
 };
 
-const PoliticaDatos = () => {
-  return (
-    <LanguageProvider>
-      <PoliticaDatosContent />
-    </LanguageProvider>
-  );
-};
 
 export default PoliticaDatos;
