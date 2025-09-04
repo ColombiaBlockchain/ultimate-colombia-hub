@@ -93,7 +93,30 @@ export const CommunityForm = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Name */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">{t('form.name')}</label>
+            <Input
+              {...register('name')}
+              className="bg-input border-border focus:border-neon-cyan"
+              placeholder="Juan Pérez"
+            />
+            {errors.name && <p className="text-destructive text-xs">{errors.name.message}</p>}
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Phone */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">{t('form.phone')}</label>
+              <Input
+                type="tel"
+                {...register('phone')}
+                className="bg-input border-border focus:border-neon-cyan"
+                placeholder="3001234567"
+              />
+              {errors.phone && <p className="text-destructive text-xs">{errors.phone.message}</p>}
+            </div>
+
             {/* Country */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-foreground">{t('form.country')}</label>
@@ -110,29 +133,6 @@ export const CommunityForm = () => {
               </Select>
               {errors.country && <p className="text-destructive text-xs">{errors.country.message}</p>}
             </div>
-
-            {/* Phone */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">{t('form.phone')}</label>
-              <Input
-                type="tel"
-                {...register('phone')}
-                className="bg-input border-border focus:border-neon-cyan"
-                placeholder="3001234567"
-              />
-              {errors.phone && <p className="text-destructive text-xs">{errors.phone.message}</p>}
-            </div>
-          </div>
-
-          {/* Name */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">{t('form.name')}</label>
-            <Input
-              {...register('name')}
-              className="bg-input border-border focus:border-neon-cyan"
-              placeholder="Juan Pérez"
-            />
-            {errors.name && <p className="text-destructive text-xs">{errors.name.message}</p>}
           </div>
 
           {/* Console */}

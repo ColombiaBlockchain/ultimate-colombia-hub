@@ -59,11 +59,22 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl text-center">
           {/* EAFC Logo */}
           <div className="mb-12">
-            <img 
-              src={eafcLogo} 
-              alt="EAFC 25 Logo" 
-              className="mx-auto max-w-md w-full h-auto opacity-60 rounded-2xl"
-            />
+            <div className="relative group mx-auto max-w-md">
+              <img 
+                src="/lovable-uploads/3921c9ae-2613-4eb4-87b2-9395368b6709.png" 
+                alt="EAFC 25 Tournament Logo" 
+                className="w-full h-auto transition-all duration-500 group-hover:brightness-0 group-hover:saturate-100 group-hover:[filter:brightness(0)_saturate(100%)_invert(48%)_sepia(79%)_saturate(2476%)_hue-rotate(86deg)_brightness(118%)_contrast(119%)]"
+              />
+              {/* Animated neon border */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 border-2 border-neon-green rounded-lg animate-pulse shadow-[0_0_20px_#00FF87]"></div>
+                <div className="absolute inset-0 border border-neon-cyan rounded-lg animate-ping shadow-[0_0_30px_#00E5FF]"></div>
+              </div>
+              {/* Scanning line animation */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 overflow-hidden rounded-lg">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon-green to-transparent animate-[scan_2s_ease-in-out_infinite] shadow-[0_0_10px_#00FF87]"></div>
+              </div>
+            </div>
           </div>
 
           {/* Main Title */}
