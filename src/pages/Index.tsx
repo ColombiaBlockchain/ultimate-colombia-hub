@@ -58,8 +58,8 @@ const Index = () => {
       <section id="hero" className="hero-bg min-h-screen flex flex-col justify-center items-center px-4 pt-16">
         <div className="container mx-auto max-w-6xl text-center">
           {/* EAFC Logo */}
-          <div className="mb-12">
-            <div className="relative group mx-auto max-w-md">
+          <div className="mb-12 mt-8">
+            <div className="relative group mx-auto max-w-xs sm:max-w-md">
               <img 
                 src="/lovable-uploads/3921c9ae-2613-4eb4-87b2-9395368b6709.png" 
                 alt="EAFC 25 Tournament Logo" 
@@ -78,12 +78,12 @@ const Index = () => {
           </div>
 
           {/* Main Title */}
-          <h1 className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+          <h1 className="font-orbitron text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight px-4">
             {t('hero.title')}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed px-4">
             {t('hero.subtitle')}
           </p>
 
@@ -96,7 +96,7 @@ const Index = () => {
           <Button
             onClick={scrollToForm}
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-orbitron font-bold text-lg px-8 py-6 rounded-2xl glow-neon-green hover-scale mb-16"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-orbitron font-bold text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 rounded-2xl glow-neon-green hover-scale mb-16"
           >
             {t('hero.cta')}
           </Button>
@@ -108,10 +108,10 @@ const Index = () => {
 
           {/* Influencers Section */}
           <div className="mb-16">
-            <h2 className="font-orbitron text-2xl md:text-3xl font-bold text-foreground mb-8">
+            <h2 className="font-orbitron text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 px-4">
               {t('hero.creators')}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto px-4">
               {influencers.map((influencer, index) => (
                 <InfluencerCard
                   key={index}
