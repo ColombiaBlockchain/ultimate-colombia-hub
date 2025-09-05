@@ -64,7 +64,7 @@ const Index = () => {
     {
       name: 'Fedecolde',
       handle: 'Federación Colombiana de Deportes Electrónicos',
-      avatar: influencer2, // Replace with actual image later  
+      avatar: influencer5, // Replace with actual image later  
       type: 'organization' as const,
       platforms: {
         website: 'https://www.fedecolde.com/',
