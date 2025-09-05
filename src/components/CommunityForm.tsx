@@ -10,11 +10,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/hooks/use-toast';
 import { CheckCircle } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const formSchema = z.object({
-  country: z.string().min(1, 'Country is required'),
-  phone: z.string().min(8, 'Phone must be at least 8 digits').max(12, 'Phone must be at most 12 digits'),
   name: z.string().min(2, 'Name is required'),
+  phone: z.string().min(8, 'Phone must be at least 8 digits').max(15, 'Phone must be at most 15 digits'),
+  country_code: z.string().min(1, 'Country code is required'),
   console: z.string().min(1, 'Console selection is required'),
   eafc25: z.boolean(),
   eafc26: z.boolean(),
@@ -27,6 +28,15 @@ export const CommunityForm = () => {
   const { t } = useLanguage();
   const [showSuccess, setShowSuccess] = useState(false);
 
+  const countries = [
+    { code: '+57', name: 'Colombia', flag: '🇨🇴' },
+    { code: '+54', name: 'Argentina', flag: '🇦🇷' },
+    { code: '+52', name: 'México', flag: '🇲🇽' },
+    { code: '+507', name: 'Panamá', flag: '🇵🇦' },
+    { code: '+58', name: 'Venezuela', flag: '🇻🇪' },
+    { code: '+1', name: 'Estados Unidos', flag: '🇺🇸' }
+  ];
+
   const {
     register,
     handleSubmit,
@@ -37,9 +47,9 @@ export const CommunityForm = () => {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      country: '+57 Colombia',
-      phone: '',
       name: '',
+      phone: '',
+      country_code: '+57',
       console: '',
       eafc25: false,
       eafc26: false,
@@ -48,20 +58,33 @@ export const CommunityForm = () => {
   });
 
   const submitToSubAVIS = async (payload: FormData) => {
-    // Placeholder function for future endpoint integration
-    console.log('Submitting to SubAVIS:', payload);
-    // await fetch('/api/subavis', { method: 'POST', body: JSON.stringify(payload) });
+    // This function is now replaced by direct Supabase integration
+    // Keep for backward compatibility if needed
+    console.log('Registration saved to Supabase:', payload);
   };
 
   const onSubmit = async (data: FormData) => {
     try {
-      // Add new member to community
+      // Save to Supabase
+      const { error } = await supabase
+        .from('tournament_registrations')
+        .insert({
+          name: data.name,
+          phone: data.phone,
+          country_code: data.country_code,
+          country: countries.find(c => c.code === data.country_code)?.name || 'Colombia',
+          console: data.console,
+          eafc25: data.eafc25,
+          eafc26: data.eafc26,
+          consent: data.consent
+        });
+
+      if (error) throw error;
+
+      // Add new member to community (for immediate UI update)
       if ((window as any).addNewMember) {
         (window as any).addNewMember(data.name);
       }
-      
-      // Submit to SubAVIS (placeholder)
-      await submitToSubAVIS(data);
       
       // Show success modal
       setShowSuccess(true);
@@ -72,6 +95,7 @@ export const CommunityForm = () => {
         description: t('form.success.message'),
       });
     } catch (error) {
+      console.error('Error saving registration:', error);
       toast({
         title: 'Error',
         description: 'Something went wrong. Please try again.',
@@ -104,7 +128,28 @@ export const CommunityForm = () => {
             {errors.name && <p className="text-destructive text-xs">{errors.name.message}</p>}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4">
+            {/* Country Code */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">{t('form.country')}</label>
+              <Select 
+                value={watch('country_code')} 
+                onValueChange={(value) => setValue('country_code', value)}
+              >
+                <SelectTrigger className="bg-input border-border focus:border-neon-cyan">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-popover border-border">
+                  {countries.map((country) => (
+                    <SelectItem key={country.code} value={country.code}>
+                      {country.flag} {country.code} {country.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.country_code && <p className="text-destructive text-xs">{errors.country_code.message}</p>}
+            </div>
+
             {/* Phone */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-foreground">{t('form.phone')}</label>
@@ -115,23 +160,6 @@ export const CommunityForm = () => {
                 placeholder="3001234567"
               />
               {errors.phone && <p className="text-destructive text-xs">{errors.phone.message}</p>}
-            </div>
-
-            {/* Country */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">{t('form.country')}</label>
-              <Select 
-                value="+57 Colombia" 
-                onValueChange={(value) => setValue('country', value)}
-              >
-                <SelectTrigger className="bg-input border-border focus:border-neon-cyan">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-popover border-border">
-                  <SelectItem value="+57 Colombia">🇨🇴 +57 Colombia</SelectItem>
-                </SelectContent>
-              </Select>
-              {errors.country && <p className="text-destructive text-xs">{errors.country.message}</p>}
             </div>
           </div>
 

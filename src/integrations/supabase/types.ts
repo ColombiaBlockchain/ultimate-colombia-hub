@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      tournament_registrations: {
+        Row: {
+          consent: boolean
+          console: string
+          country: string
+          country_code: string
+          created_at: string
+          eafc25: boolean | null
+          eafc26: boolean | null
+          id: string
+          name: string
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          consent?: boolean
+          console: string
+          country?: string
+          country_code?: string
+          created_at?: string
+          eafc25?: boolean | null
+          eafc26?: boolean | null
+          id?: string
+          name: string
+          phone: string
+          updated_at?: string
+        }
+        Update: {
+          consent?: boolean
+          console?: string
+          country?: string
+          country_code?: string
+          created_at?: string
+          eafc25?: boolean | null
+          eafc26?: boolean | null
+          id?: string
+          name?: string
+          phone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

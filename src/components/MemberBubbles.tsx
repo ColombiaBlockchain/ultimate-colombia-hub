@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Member {
   id: string;
@@ -17,8 +18,65 @@ export const MemberBubbles = () => {
     { id: '5', initials: 'LG' },
     { id: '6', initials: 'MF' },
     { id: '7', initials: 'RC' },
-    { id: '8', initials: 'SP' },
   ]);
+
+  useEffect(() => {
+    // Load initial count from database
+    const loadRegistrations = async () => {
+      const { count } = await supabase
+        .from('tournament_registrations')
+        .select('*', { count: 'exact', head: true });
+      
+      if (count !== null) {
+        setMemberCount(64 + count);
+      }
+    };
+
+    // Load recent registrations for bubbles
+    const loadRecentRegistrations = async () => {
+      const { data } = await supabase
+        .from('tournament_registrations')
+        .select('name, created_at')
+        .order('created_at', { ascending: false })
+        .limit(7);
+
+      if (data) {
+        const newMembers = data.map((registration, index) => {
+          const initials = registration.name
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase())
+            .slice(0, 2)
+            .join('');
+          
+          return {
+            id: `db-${index}`,
+            initials
+          };
+        });
+        setMembers(newMembers);
+      }
+    };
+
+    loadRegistrations();
+    loadRecentRegistrations();
+
+    // Set up real-time subscription
+    const channel = supabase
+      .channel('tournament-registrations')
+      .on('postgres_changes', 
+        { event: 'INSERT', schema: 'public', table: 'tournament_registrations' },
+        (payload) => {
+          const newRegistration = payload.new as any;
+          addNewMember(newRegistration.name);
+          setMemberCount(prev => prev + 1);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
 
   const addNewMember = (name: string) => {
     const initials = name

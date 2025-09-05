@@ -11,24 +11,24 @@ export const Footer = () => {
         <div className="flex flex-col items-center space-y-8">
           {/* Social Icons */}
           <div className="flex items-center space-x-6">
-            <a 
-              href="#" 
+            <button 
+              onClick={() => alert('Coming Soon - Próximamente disponible')}
               className="p-3 rounded-lg bg-muted hover:bg-neon-magenta/20 hover:text-neon-magenta transition-all duration-200 hover-scale"
             >
               <Instagram size={20} />
-            </a>
-            <a 
-              href="#" 
+            </button>
+            <button 
+              onClick={() => alert('Coming Soon - Próximamente disponible')}
               className="p-3 rounded-lg bg-muted hover:bg-red-500/20 hover:text-red-400 transition-all duration-200 hover-scale"
             >
               <Youtube size={20} />
-            </a>
-            <a 
-              href="#" 
+            </button>
+            <button 
+              onClick={() => alert('Coming Soon - Próximamente disponible')}
               className="p-3 rounded-lg bg-muted hover:bg-blue-500/20 hover:text-blue-400 transition-all duration-200 hover-scale"
             >
               <Twitter size={20} />
-            </a>
+            </button>
           </div>
 
           {/* Links */}
@@ -48,10 +48,13 @@ export const Footer = () => {
             </Link>
           </div>
 
-          {/* Disclaimer */}
-          <p className="text-xs text-muted-foreground text-center max-w-2xl leading-relaxed">
+          {/* Disclaimer as clickable link */}
+          <Link 
+            to="/descargo-responsabilidad" 
+            className="text-xs text-muted-foreground hover:text-neon-cyan transition-colors duration-200 text-center max-w-2xl leading-relaxed underline cursor-pointer"
+          >
             {t('footer.disclaimer')}
-          </p>
+          </Link>
         </div>
       </div>
     </footer>

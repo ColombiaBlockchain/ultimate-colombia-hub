@@ -20,6 +20,7 @@ const translations = {
     'hero.cta': 'Unirme a la comunidad',
     'hero.members': 'Miembros en la comunidad:',
     'hero.creators': 'Creadores que promueven el torneo',
+    'hero.organizers': 'Creadores y Organizadores del Torneo',
     
     // Countdown
     'countdown.days': 'Días',
@@ -62,6 +63,7 @@ const translations = {
     'hero.cta': 'Join the community',
     'hero.members': 'Community members:',
     'hero.creators': 'Creators promoting the tournament',
+    'hero.organizers': 'Creators and Tournament Organizers',
     
     // Countdown
     'countdown.days': 'Days',

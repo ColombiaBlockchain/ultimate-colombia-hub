@@ -19,48 +19,42 @@ export const Navbar = () => {
             className="w-10 h-10 object-contain"
           />
           <span className="font-orbitron text-lg font-bold text-neon-green hidden sm:block">
-            TORNEO EAFC25
+            EA FC 25
           </span>
         </div>
 
-        {/* Navigation Links */}
-        <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-          <a 
-            href="#hero" 
-            className="text-foreground hover:text-neon-cyan transition-colors duration-200 text-sm lg:text-base"
-          >
-            {t('nav.home')}
-          </a>
+        {/* Navigation Links and CTA */}
+        <div className="flex items-center space-x-4">
           <button 
             onClick={scrollToForm}
-            className="text-foreground hover:text-neon-cyan transition-colors duration-200 text-sm lg:text-base"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-orbitron font-bold px-4 py-2 rounded-xl transition-all duration-200 hover:scale-105 glow-neon-green text-sm"
           >
             {t('nav.join')}
           </button>
-        </div>
-
-        {/* Language Toggle */}
-        <div className="flex items-center space-x-1 sm:space-x-2 bg-muted/50 rounded-lg p-1">
-          <button
-            onClick={() => setLanguage('es')}
-            className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 ${
-              language === 'es' 
-                ? 'bg-primary text-primary-foreground shadow-lg' 
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            ES
-          </button>
-          <button
-            onClick={() => setLanguage('en')}
-            className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 ${
-              language === 'en' 
-                ? 'bg-primary text-primary-foreground shadow-lg' 
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            EN
-          </button>
+          
+          {/* Language Toggle */}
+          <div className="flex items-center space-x-1 bg-muted/50 rounded-lg p-1">
+            <button
+              onClick={() => setLanguage('es')}
+              className={`px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
+                language === 'es' 
+                  ? 'bg-primary text-primary-foreground shadow-lg' 
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              ES
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
+                language === 'en' 
+                  ? 'bg-primary text-primary-foreground shadow-lg' 
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              EN
+            </button>
+          </div>
         </div>
       </div>
     </nav>
