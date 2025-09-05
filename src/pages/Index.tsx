@@ -12,7 +12,7 @@ import eafcLogo from '@/assets/eafc25-logo.jpg';
 import influencer1 from '@/assets/influencer1.jpg';
 import influencer2 from '@/assets/influencer2.jpg';
 import influencer3 from '@/assets/influencer3.jpg';
-import sponsor4 from '@/assets/sponsor4.jpg';
+import sponsor4 from '@/assets/sponsor4.JPG';
 
 const Index = () => {
   const { t } = useLanguage();
