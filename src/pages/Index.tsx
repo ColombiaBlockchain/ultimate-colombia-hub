@@ -55,7 +55,7 @@ const Index = () => {
     {
       name: 'Daniel Luque',
       handle: 'Patrocinador Oficial',
-      avatar: influencer1, // Replace with actual image later
+      avatar: sponsor4, // Replace with actual image later
       type: 'sponsor' as const,
       platforms: {
         linkedin: 'https://www.linkedin.com/in/dani-luque/',
