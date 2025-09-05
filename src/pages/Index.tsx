@@ -13,6 +13,7 @@ import influencer1 from '@/assets/influencer1.jpg';
 import influencer2 from '@/assets/influencer2.jpg';
 import influencer3 from '@/assets/influencer3.jpg';
 import sponsor4 from '@/assets/sponsor4.jpg';
+import fede1 from '@/assets/fede1.jpg';
 
 const Index = () => {
   const { t } = useLanguage();
@@ -35,7 +36,7 @@ const Index = () => {
     {
       name: 'Sebastian Zarazan',
       handle: '@sebastian_zarazan',
-      avatar: influencer2,
+      avatar: influencer3,
       type: 'creator' as const,
       platforms: {
         instagram: 'https://www.instagram.com/sebastian_zarazan/?igsh=MXZhYjJqNWNibXhybg%3D%3D&utm_source=qr',
@@ -45,7 +46,7 @@ const Index = () => {
     {
       name: 'McZeus19',
       handle: '@mczeus19',
-      avatar: influencer3,
+      avatar: influencer2,
       type: 'creator' as const,
       platforms: {
         tiktok: 'https://www.tiktok.com/@mczeus19?_t=ZS-8zT0Wdn3hHb&_r=1',
@@ -65,7 +66,7 @@ const Index = () => {
     {
       name: 'Fedecolde',
       handle: 'Federación Colombiana de Deportes Electrónicos',
-      avatar: influencer2, // Replace with actual image later  
+      avatar: fede1, // Replace with actual image later  
       type: 'organization' as const,
       platforms: {
         website: 'https://www.fedecolde.com/',
