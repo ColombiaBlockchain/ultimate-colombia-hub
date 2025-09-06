@@ -166,7 +166,10 @@ export const CommunityForm = () => {
           {/* Console */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground">{t('form.console')}</label>
-            <Select onValueChange={(value) => setValue('console', value)}>
+            <Select 
+              value={watch('console')} 
+              onValueChange={(value) => setValue('console', value)}
+            >
               <SelectTrigger className="bg-input border-border focus:border-neon-cyan">
                 <SelectValue placeholder="Selecciona tu consola" />
               </SelectTrigger>
