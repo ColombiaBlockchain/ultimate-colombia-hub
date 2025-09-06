@@ -1,4 +1,5 @@
 import { Instagram, Twitch, Linkedin, Globe } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 // Custom TikTok and Kick icons as SVGs
 const TikTokIcon = () => (
@@ -26,6 +27,7 @@ interface EnhancedInfluencerCardProps {
     website?: string;
   };
   type?: 'creator' | 'sponsor' | 'organization';
+  showDisclaimer?: boolean;
 }
 
 export const EnhancedInfluencerCard = ({ 
@@ -33,7 +35,8 @@ export const EnhancedInfluencerCard = ({
   handle, 
   avatar, 
   platforms, 
-  type = 'creator' 
+  type = 'creator',
+  showDisclaimer = false
 }: EnhancedInfluencerCardProps) => {
   const isOrganization = type === 'organization';
   const isSponsor = type === 'sponsor';
@@ -120,6 +123,23 @@ export const EnhancedInfluencerCard = ({
             </a>
           )}
         </div>
+
+        {/* Disclaimer button for federation */}
+        {showDisclaimer && (
+          <div className="mt-4 text-center border-t border-border pt-4">
+            <p className="text-xs text-muted-foreground mb-2">
+              La federación apoya pero no patrocina el torneo
+            </p>
+            <Button
+              onClick={() => window.open('/disclaimer-federacion', '_blank')}
+              variant="outline"
+              size="sm"
+              className="text-xs hover:border-neon-cyan hover:text-neon-cyan"
+            >
+              Ver disclaimer oficial
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

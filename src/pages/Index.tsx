@@ -5,6 +5,7 @@ import { MemberBubbles } from '@/components/MemberBubbles';
 import { EnhancedInfluencerCard } from '@/components/EnhancedInfluencerCard';
 import { CommunityForm } from '@/components/CommunityForm';
 import { Footer } from '@/components/Footer';
+import { TournamentStatus } from '@/components/TournamentStatus';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ScrollToTop } from '@/components/ScrollToTop';
@@ -22,7 +23,8 @@ const Index = () => {
     document.getElementById('community-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const influencers = [
+  // Creadores de contenido del torneo
+  const creators = [
     {
       name: 'BryanP',
       handle: '@bryanpe10_',
@@ -52,28 +54,32 @@ const Index = () => {
         tiktok: 'https://www.tiktok.com/@mczeus19?_t=ZS-8zT0Wdn3hHb&_r=1',
         kick: 'https://kick.com/mczeus19'
       }
-    },
-    {
-      name: 'Daniel Luque',
-      handle: 'Patrocinador Oficial',
-      avatar: sponsor4, // Replace with actual image later
-      type: 'sponsor' as const,
-      platforms: {
-        linkedin: 'https://www.linkedin.com/in/dani-luque/',
-        instagram: 'https://www.instagram.com/soydaniluque/'
-      }
-    },
-    {
-      name: 'Fedecolde',
-      handle: 'Federación Colombiana de Deportes Electrónicos',
-      avatar: fede1, // Replace with actual image later  
-      type: 'organization' as const,
-      platforms: {
-        website: 'https://www.fedecolde.com/',
-        instagram: 'https://www.instagram.com/fedecolde/?hl=es'
-      }
     }
   ];
+
+  // Patrocinador oficial
+  const sponsor = {
+    name: 'Daniel Luque',
+    handle: 'Patrocinador Oficial',
+    avatar: sponsor4,
+    type: 'sponsor' as const,
+    platforms: {
+      linkedin: 'https://www.linkedin.com/in/dani-luque/',
+      instagram: 'https://www.instagram.com/soydaniluque/'
+    }
+  };
+
+  // Federación que avala
+  const federation = {
+    name: 'Fedecolde',
+    handle: 'Federación Colombiana de Deportes Electrónicos',
+    avatar: fede1,
+    type: 'organization' as const,
+    platforms: {
+      website: 'https://www.fedecolde.com/',
+      instagram: 'https://www.instagram.com/fedecolde/?hl=es'
+    }
+  };
 
   return (
     <div className="min-h-screen tech-bg">
@@ -115,36 +121,72 @@ const Index = () => {
             <Countdown />
           </div>
 
-          {/* CTA Button */}
-          <Button
-            onClick={scrollToForm}
-            size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-orbitron font-bold text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 rounded-2xl glow-neon-green hover-scale mb-16"
-          >
-            {t('hero.cta')}
-          </Button>
+          {/* Tournament Status Component */}
+          <div className="mb-16">
+            <TournamentStatus />
+          </div>
 
           {/* Member Bubbles */}
           <div className="mb-16">
             <MemberBubbles />
           </div>
 
-          {/* Influencers Section */}
-          <div className="mb-16">
-            <h2 className="font-orbitron text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 px-4">
-              {t('hero.organizers')}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 max-w-6xl mx-auto px-4">
-              {influencers.map((influencer, index) => (
-                <EnhancedInfluencerCard
-                  key={index}
-                  name={influencer.name}
-                  handle={influencer.handle}
-                  avatar={influencer.avatar}
-                  platforms={influencer.platforms}
-                  type={influencer.type}
-                />
-              ))}
+          {/* Organizers Section */}
+          <div className="mb-16 space-y-12">
+            {/* Creadores de contenido del torneo */}
+            <div>
+              <h2 className="font-orbitron text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 px-4 text-center">
+                Creadores de contenido del torneo
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto px-4">
+                {creators.map((creator, index) => (
+                  <EnhancedInfluencerCard
+                    key={index}
+                    name={creator.name}
+                    handle={creator.handle}
+                    avatar={creator.avatar}
+                    platforms={creator.platforms}
+                    type={creator.type}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Patrocinador oficial */}
+            <div>
+              <h3 className="font-orbitron text-lg sm:text-xl font-bold text-neon-cyan mb-6 px-4 text-center">
+                Patrocinador oficial
+              </h3>
+              <div className="flex justify-center px-4">
+                <div className="max-w-xs">
+                  <EnhancedInfluencerCard
+                    name={sponsor.name}
+                    handle={sponsor.handle}
+                    avatar={sponsor.avatar}
+                    platforms={sponsor.platforms}
+                    type={sponsor.type}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Federación que avala */}
+            <div>
+              <h3 className="font-orbitron text-lg sm:text-xl font-bold text-neon-green mb-6 px-4 text-center">
+                Federación que avala el torneo
+              </h3>
+              <div className="flex justify-center px-4">
+                <div className="max-w-xs">
+                  <EnhancedInfluencerCard
+                    name={federation.name}
+                    handle={federation.handle}
+                    avatar={federation.avatar}
+                    platforms={federation.platforms}
+                    type={federation.type}
+                    showDisclaimer={true}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      tournament_config: {
+        Row: {
+          created_at: string
+          id: string
+          is_live: boolean
+          status_label: string
+          stream_platform: string | null
+          stream_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_live?: boolean
+          status_label?: string
+          stream_platform?: string | null
+          stream_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_live?: boolean
+          status_label?: string
+          stream_platform?: string | null
+          stream_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       tournament_registrations: {
         Row: {
           consent: boolean

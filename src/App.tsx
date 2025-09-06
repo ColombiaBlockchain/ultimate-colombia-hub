@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import PoliticaDatos from "./pages/PoliticaDatos";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
 import DescargoResponsabilidad from "./pages/DescargoResponsabilidad";
+import { TournamentAdmin } from "./pages/TournamentAdmin";
+import { DisclaimerFederacion } from "./pages/DisclaimerFederacion";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const App = () => (
             <Route path="/politica-de-datos" element={<PoliticaDatos />} />
             <Route path="/terminos-y-condiciones" element={<TerminosCondiciones />} />
             <Route path="/descargo-responsabilidad" element={<DescargoResponsabilidad />} />
+            <Route path="/admin" element={<TournamentAdmin />} />
+            <Route path="/disclaimer-federacion" element={<DisclaimerFederacion />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
